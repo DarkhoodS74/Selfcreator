@@ -68,7 +68,7 @@
                 }</style>
         </nav>
       </div></header>
-    <section class="u-align-center u-clearfix u-container-align-center u-gradient u-section-1" id="carousel_ce6e">
+   <section class="u-align-center u-clearfix u-container-align-center u-gradient u-section-1" id="carousel_ce6e">
       <div class="u-sheet">
         <div class="u-layout">
           <div class="u-layout-row">
@@ -77,80 +77,45 @@
                 Замовити електронну книгу<br>"Сам собі творець"
               </h4>
               <div class="u-align-center u-form u-form-1">
-              <form id="orderForm" action="https://formsubmit.co/el/yudogi" method="POST" class="u-inner-form" style="padding: 0px;">
-                <div class="u-form-group">
-                  <label class="u-label">Ваше ім'я</label>
-                  <input type="text" placeholder="Ваше ім'я" name="name-1" required>
-                </div>
-                <div class="u-form-group">
-                  <label class="u-label">Ваше прізвище</label>
-                  <input type="text" placeholder="Ваше прізвище" name="name-2" required>
-                </div>
-                <div class="u-form-group">
-                  <label class="u-label">Ваш номер телефону</label>
-                  <input type="tel" placeholder="050 123 4567" name="phone" required data-country-code="ua">
-                </div>
-                <div class="u-form-group">
-                  <label class="u-label">Ваш Email</label>
-                  <input type="email" placeholder="example@gmail.com" name="email" required>
-                </div>
-                <!-- Приховані поля для Formsubmit -->
-                <input type="hidden" name="_captcha" value="false">
-                <!-- Поле _next тут може залишитись для стандартного редиректу, але оскільки ми робимо AJAX-відправку, редирект виконується вручну -->
-                <input type="hidden" name="_next" value="https://darkhoods74.github.io/Selfcreator/payment.html">
-                <input type="hidden" name="formServices" value="c165107a-22e7-ed91-2f25-583ca9de1a0a">
-                <div class="u-align-center u-form-group">
-                  <button type="submit" class="u-btn">
-                    Оформити замовлення
-                  </button>
-                </div>
-                <div id="formMessage" style="display:none;"></div>
-              </form>
+                <!-- Стандартна форма з відправкою даних -->
+                <form id="orderForm" action="https://formsubmit.co/el/yudogi" method="POST" class="u-inner-form" style="padding: 0px;">
+                  <div class="u-form-group u-form-name u-form-partition-factor-2 u-form-group-1">
+                    <label class="u-label">Ваше ім'я</label>
+                    <input type="text" placeholder="Ваше ім'я" name="name-1" class="u-border-2 u-border-palette-3-base u-input u-input-rectangle u-none" required>
+                  </div>
+                  <div class="u-form-group u-form-name u-form-partition-factor-2 u-form-group-2">
+                    <label class="u-label">Ваше прізвище</label>
+                    <input type="text" placeholder="Ваше прізвище" name="name-2" class="u-border-2 u-border-palette-3-base u-input u-input-rectangle u-none" required>
+                  </div>
+                  <div class="u-form-group u-form-partition-factor-2 u-form-phone u-form-group-3">
+                    <label class="u-label">Ваш номер телефону</label>
+                    <input type="tel" placeholder="050 123 4567" name="phone" class="u-border-2 u-border-palette-3-base u-input u-input-rectangle u-none" required data-country-code="ua">
+                  </div>
+                  <div class="u-form-email u-form-group u-form-partition-factor-2">
+                    <label class="u-label">Ваш Email</label>
+                    <input type="email" placeholder="example@gmail.com" name="email" class="u-border-2 u-border-palette-3-base u-input u-input-rectangle u-none" required>
+                  </div>
+                  <!-- Приховані поля для налаштування Formsubmit -->
+                  <input type="hidden" name="_captcha" value="false">
+                  <input type="hidden" name="_next" value="https://darkhoods74.github.io/Selfcreator/payment.html">
+                  <input type="hidden" name="formServices" value="c165107a-22e7-ed91-2f25-583ca9de1a0a">
+                  <div class="u-align-center u-form-group u-form-submit">
+                    <button type="submit" class="u-active-palette-1-light-1 u-border-2 u-border-custom-color-5 u-btn u-btn-round u-button-style u-hover-custom-color-5 u-palette-3-base u-radius u-text-black u-text-hover-white u-btn-1">
+                      Оформити замовлення
+                    </button>
+                  </div>
+                </form>
+              </div>
             </div>
-          </div>
-          <div class="u-layout-cell">
-            <img class="u-expanded-width u-image u-image-default u-image-1" src="images/IMG_4931-removebg-preview-1.png" alt="Книга" data-image-width="374" data-image-height="530">
+            <div class="u-layout-cell">
+              <img class="u-expanded-width u-image u-image-default u-image-1" src="images/IMG_4931-removebg-preview-1.png" alt="Книга" data-image-width="374" data-image-height="530">
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <script>
-    document.getElementById('orderForm').addEventListener('submit', function(e) {
-      e.preventDefault(); // запобігаємо стандартному редиректу форми
-      const form = this;
-      const formData = new FormData(form);
-
-      fetch(form.action, {
-        method: 'POST',
-        mode: 'cors',
-        headers: {
-          'Accept': 'application/json'
-        },
-        body: formData
-      })
-      .then(response => {
-        if (response.ok) {
-          // При успішній відправці виконується редирект
-          window.location.href = "https://darkhoods74.github.io/Selfcreator/payment.html";
-        } else {
-          return response.json().then(data => {
-            console.error('Error details:', data);
-            throw new Error("Submission failed");
-          });
-        }
-      })
-      .catch(error => {
-        document.getElementById('formMessage').style.display = 'block';
-        document.getElementById('formMessage').style.color = 'red';
-        document.getElementById('formMessage').textContent = "Відправлення не вдалося. Будь-ласка, спробуйте ще раз.";
-        console.error('Помилка:', error);
-      });
-    });
-  </script>
-    
-    
+  
     <footer class="u-align-center u-clearfix u-container-align-center u-custom-color-1 u-footer u-footer" id="sec-0c55"><div class="u-clearfix u-sheet u-valign-middle-lg u-valign-middle-md u-valign-middle-sm u-valign-middle-xl u-sheet-1">
         <p class="u-align-center u-small-text u-text u-text-variant u-text-1">"САМ СОБІ ТВОРЕЦЬ" ВЛАДИСЛАВ БИВАЛІН</p>
       </div></footer>
